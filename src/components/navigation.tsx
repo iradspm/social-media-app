@@ -19,7 +19,7 @@ export default function LandingPage() {
         <header className="bg-white fixed top-0 left-0 w-full z-50 shadow">
         <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
             <div className="flex lg:flex-1">
-                <a href="#" className="-m-1.5 p-1.5">
+                <a href="#" className="-m-1.5 p-1.5 flex items-center gap-2">
                     <Image
                         aria-hidden
                         src="/globe.svg"
@@ -27,8 +27,9 @@ export default function LandingPage() {
                         width={16}
                         height={16}
                     />
-                    <span className="sr-only">Chap Chap Solutions</span>
+                    <span className="text-base font-semibold text-gray-900">Chap Chap Solutions</span>
                 </a>
+
             </div>
             <div className="flex lg:hidden">
                 <button

@@ -4,22 +4,24 @@ import Header from "@/components/footerx";
 import Login from "../../components/login";
 import Footer from "@/components/footer";
 import LandingPage from "@/components/navigation";
+import ServiceImage from "@/components/loginLeft";
+import ServiceImageRight from "@/components/loginRight";
 
 export default function Home() {
     return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-        <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-            <div>
-                <div><LandingPage/></div>
-                <div>
-                    <Login/>
+        <div className="min-h-screen w-full font-sans bg-gradient-to-br from-white-50 via-white-50 to-white-100 text-gray-800">
+            <LandingPage />
+            <main className="max-w-7xl mx-auto px-4 sm:px-10 py-20 flex flex-col">
+                <div className="grid grid-cols-1 md:grid-cols-3 items-stretch">
+                    <div className="h-full"><ServiceImage /></div>
+                    <div className="h-full"><Login /></div>
+                    <div className="h-full"><ServiceImageRight /></div>
                 </div>
-            </div>
-        </main>
-        <footer className="fixed bottom-0 left-0 w-full shadow bg-white z-50 flex gap-[24px] flex-wrap items-center justify-center p-4">
-            <Header/>
-            <Footer/>
-        </footer>
-    </div>
+            </main>
+            <footer className="w-full shadow bg-white z-50 flex gap-2 flex-wrap items-center justify-center p-6 border-t border-gray-200">
+                <Header />
+                <Footer />
+            </footer>
+        </div>
     );
 }
