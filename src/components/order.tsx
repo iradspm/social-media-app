@@ -49,14 +49,15 @@ export default function Order() {
 
         try {
         console.log("Submitted data", formData)
-        const res = await fetch(`${base_url}/${orders_url!}`, {
+        const response = await fetch(`${base_url}/${orders_url!}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
         });
 
+        const res = await response.json();
+
         if (!res.ok) throw new Error('Request failed');
-        await res.json();
 
         setFormData({
             link: '',
