@@ -43,42 +43,49 @@ export default function Order() {
         };
 
 
-
     const processOrderRequest = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {
-        console.log("Submitted data", formData)
-        const response = await fetch(`${base_url}/${orders_url!}`, {
+            console.log("Submitted data", formData);
+
+            const response = await fetch(`${base_url}/${orders_url!}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
-        });
+            });
 
-        const res = await response.json();
+            const res = await response.json();
+            console.log(res);
 
-        if (!res.ok) throw new Error('Request failed');
+            if (response.status === 200) {
+            setFormData({
+                link: '',
+                platform: 'Instagram',
+                engagementType: 'Followers',
+                engagementNumber: 0,
+                selectedServiceId: '',
+            });
 
-        setFormData({
-            link: '',
-            platform: 'Instagram',
-            engagementType: 'Followers',
-            engagementNumber: 0,
-            selectedServiceId: '',
-        });
-
-        setResponseMessage('Order placed successfully!');
-        setResponseStatus('success');
-        } catch (error) {
-        console.error('Submit error:', error);
-        setResponseMessage('Failed to place order. Please try again.');
-        setResponseStatus('error');
+            setResponseMessage('Order placed successfully!');
+            setResponseStatus('success');
+            } else {
+            const errorMsg = res?.message || res?.error || 'Failed to place order.';
+            setResponseMessage(errorMsg);
+            setResponseStatus('error');
+            }
+        } catch (error: any) {
+            console.error('Submit error:', error);
+            setResponseMessage('Something went wrong. Please try again.');
+            setResponseStatus('error');
         }
 
         setTimeout(() => {
-        setResponseMessage(null);
+            setResponseMessage(null);
         }, 5000);
-    };
+        };
+
+
 
     return (
         <form onSubmit={processOrderRequest}>
