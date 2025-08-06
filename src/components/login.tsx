@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-
-const login_url = process.env.NEXT_PUBLIC_LOGIN_URL;
+import { base_url, login_url } from "@/lib/configs";
 
 type loginData = {
     email: string;
@@ -25,7 +24,7 @@ export default function Login() {
     const processLoginRequest = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-        const res = await fetch(`${login_url!}`, {
+        const res = await fetch(`${base_url}/${login_url!}`, {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
